@@ -1,5 +1,5 @@
 <html>
-
+ 
 <head>
 <meta charset=”utf-8? />
 <meta name=”format-detection” content=”telephone=no” />
@@ -10,49 +10,116 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-<title>Interactive Page</title>
-
+<title>Cookie clicker</title>
+ 
 </head>
-
-<body>
 <style>
-div {
-	height: auto;
-	width: 350px;
-}
+    body{
+        font-size: 3vh;
+    }
+    img {
+        max-width:50%;
+        height:auto;
+    }
+    .game{
+        height: 25vw;
+        width: 25vw;
+    }
+   
+    table, td, tr {
+        border: 1px solid black;
+    }
+   
+    .clickable{
+        background-color: red;
+    }
+   
+    .ui-btn{
+        font-size: 3vh;
+    }
+   
 </style>
-
-
-	<center>
-	<div>
-		<h1>Click away!</h1>
-		<p>Your coockies: <text id="YourCookies">0</text></p>
-		<img id="cookie" src="img/PerfectCookie.png">
-			
-	</div>
-	</center>
+ 
+<body>
+    <center>
+    <h1>Cookie clicker</h1>
+    <div style="height: 550px;">
+        <img id="cookie" src="img/PerfectCookie.png">
+    </div>
+    <p>Cookies: <text id="currentCookies">0</text></p>
+   
+    <h3>Shop</h3>
+    <table>
+        <tr><td><img id="mineShop" src="img/cart.png"></td><td><img id="farmShop" src="img/cart.png"></td></tr>
+        <tr><td id="minePrice">15</td><td id="farmPrice">10</td></tr>
+    </table>
+    </center>
 </body>
-
+ 
 <script>
-var cookiesInBank = 0;
-			
-	function animateclickoncookie(){
-		$("#cookie").animate({
-		width: "540px",
-		height: "540px"}
-		, 100);
-		
-		$("#cookie").animate({
-		width: "500px",
-		height: "500px"}
-		, 100);
-	}
-		
-	$("#cookie").click(function(){
-		animateclickoncookie() ;
-		cookiesInBank += 1;
-		$("#YourCookies").html(cookiesInBank);
-	});
+ 
+    var cookiesInBank = 0;
+    var minesPrice = 15;
+    var farmsPrice = 10;
+    var mines = 0;
+    var farms = 0;
+   
+    function animateClickOnCookie(){
+        $( "#cookie" ).animate({
+            width: "540px",
+            height: "540px"
+          }, 100 );
+         
+        $( "#cookie" ).animate({
+            width: "512px",
+            height: "512px"
+          }, 100 );
+    }
+   
+    function changeCookiesInBank(value){
+        cookiesInBank += value;
+        $("#currentCookies").html(cookiesInBank);
+    }
+   
+    function increaseMinePrice(){
+        minesPrice = Math.floor(minesPrice*1.2);
+        $("#minePrice").html(minesPrice);
+    }
+   
+    function increaseFarmPrice(){
+        farmsPrice =  Math.floor(farmsPrice*1.2);
+        $("#farmPrice").html(farmsPrice);
+    }
+   
+    $("#cookie").click(function(){
+        animateClickOnCookie();
+        changeCookiesInBank(1 + mines*3 + farms*2);
+    });
+   
+    $("#mineShop").click(function(){
+        if(cookiesInBank >= minesPrice){
+            mines += 1;
+            changeCookiesInBank(-1*minesPrice);
+            increaseMinePrice();
+        }else{
+            alert("Not enought cookies!");
+        }
+    });
+   
+    $("#farmShop").click(function(){
+        if(cookiesInBank >= farmsPrice){
+            farms += 1;
+            changeCookiesInBank(-1*farmsPrice);
+            increaseFarmPrice();
+        }else{
+            alert("Not enought cookies!");
+        }
+    });
+   
+   
+   
+   
+   
 </script>
-
+ 
 </html>
