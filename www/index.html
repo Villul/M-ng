@@ -15,11 +15,19 @@
 </head>
 
 <body>
+<style>
+div {
+	height: auto;
+	width: 350px;
+}
+</style>
+
+
 	<center>
 	<div>
-		<h1>Awesome Game</h1>
-		<p>Your score: <text id="myScore">0</text></p>
-		<img id="cookie" src="cookie.png">
+		<h1>Click away!</h1>
+		<p>Your coockies: <text id="YourCookies">0</text></p>
+		<img id="cookie" src="img/PerfectCookie.png">
 			
 	</div>
 	</center>
@@ -35,8 +43,8 @@ var cookiesInBank = 0;
 		, 100);
 		
 		$("#cookie").animate({
-		width: "512px",
-		height: "512px"}
+		width: "500px",
+		height: "500px"}
 		, 100);
 	}
 		
