@@ -13,114 +13,38 @@
 <title>Interactive Page</title>
 
 </head>
-<style>
-	body{
-		font-size: 200%;
-	}
-	img {
-		max-width:100%;
-		height:auto;
-	}
-	.game{
-		height: 25vw;
-		width: 25vw;
-	}
-	
-	table, td, tr {
-		border: 1px solid black;
-	}
-	
-	.clickable{
-		background-color: red;
-	}
-	
-	.ui-btn{
-		font-size: 200%;
-	}
-	.nigs {
-	     font-size: 150%;
-	}
-	
-</style>
 
 <body>
 	<center>
 	<div>
 		<h1>Awesome Game</h1>
 		<p>Your score: <text id="myScore">0</text></p>
+		<img id="cookie" src="cookie.png">
 			
-		<table>
-
 	</div>
-	<div style="padding-top: 30px">
-		<table>
-			<tr><td id="1" class="game"></td><td id="2" class="game"></td><td id="3" class="game"></td></tr>
-			<tr><td id="4" class="game"></td><td id="5" class="game"></td><td id="6" class="game"></td></tr>
-			<tr><td id="7" class="game"></td><td id="8" class="game"></td><td id="9" class="game"></td></tr>
-		</table>
-	</div>
-	<div style="
-	height:20vh">
-		<button id="btn" class="ui-btn">Start game!</button>
-	</div>
-
 	</center>
 </body>
 
 <script>
-var gameStarted = false;
-var score = 0;
-		function getRandomNumber(intFrom, intTo){
-		return Math.floor((Math.random() * intTo) + intFrom);
-	}
-	
-	function colorRandomSocket(exceptId){
-		xceptId = parseInt(exceptId);
-		var socketToColor = getRandomNumber(1, 9);
-		while(socketToColor == exceptId){
-			socketToColor = getRandomNumber(1, 9);
-			console.log("Recalculated");
-		}
-		var idOfSocketString = "#" + String(socketToColor);ŽŽ
-		$(idOfSocketString).addClass("clickable");
-	}
-	
-	function addScore(event){
-		score = score + 1;
-		$("#myScore").html(score);
-	}
-	$("#btn").click(
-		function () {
-			if(!gameStarted){
-				gameStarted = true ;
-				colorRandomSocket() ;
-				$("btn").html("End Game!");
-			}
-			else{
-				gameStarted = false;
-				for(var i=1; i<=9; i++) {
-				
-				}
-				$("btn").html("start Game!");
-				alert("Game ended!");
-				score = 0
-				$("#myScore").html(score);
-				alert("Your final score is: " + score);
-			}
-		}
-	);
+var cookiesInBank = 0;
+			
+	function animateclickoncookie(){
+		$("#cookie").animate({
+		width: "540px",
+		height: "540px"}
+		, 100);
 		
-	
-	$(".game").click(function(){
-		if($(this).attr("class").indexOf("clickable") >= 0){
-			addScore();
-			$(this).removeClass("clickable");
-			colorRandomSocket($(this).attr("id"));
-		}
-		else
-		alert("This is not a red box");
+		$("#cookie").animate({
+		width: "512px",
+		height: "512px"}
+		, 100);
+	}
+		
+	$("#cookie").click(function(){
+		animateclickoncookie() ;
+		cookiesInBank += 1;
+		$("#YourCookies").html(cookiesInBank);
 	});
-	colorRandomSocket();
 </script>
 
 </html>
